@@ -254,7 +254,7 @@ mod body {
     use http_body::Frame;
     use http_body::SizeHint;
 
-    struct HttpBufferBody(Buffer);
+    pub(super) struct HttpBufferBody(pub(super) super::Buffer);
 
     impl http_body::Body for HttpBufferBody {
         type Data = Bytes;

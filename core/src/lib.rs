@@ -155,8 +155,11 @@
 // Make sure all our public APIs have docs.
 #![deny(missing_docs)]
 // WASI supports are still unstable
-#![cfg_attr(feature = "services-fs", feature(wasi_ext))]
-#![cfg_attr(feature = "services-fs", feature(wasip2))]
+#![cfg_attr(
+    all(feature = "services-fs", target_arch = "wasm32"),
+    feature(wasi_ext)
+)]
+#![cfg_attr(all(feature = "services-fs", target_arch = "wasm32"), feature(wasip2))]
 
 // Private module with public types, they will be accessed via `opendal::Xxxx`
 mod types;
